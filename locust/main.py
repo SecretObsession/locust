@@ -191,7 +191,16 @@ def parse_options():
        default=False,
        help='Only print the summary stats'
     )
-    
+
+    # dont reset the locust stats once swarm has been hatched
+    parser.add_option(
+        '--no-reset-stats',
+        action='store_true',
+        dest='no_reset_stats',
+        default=False,
+        help="Never reset statistics after hatching"
+    )
+
     # List locust commands found in loaded locust files/source files
     parser.add_option(
         '-l', '--list',
@@ -386,7 +395,12 @@ def main():
         }
         console_logger.info(dumps(task_data))
         sys.exit(0)
-    
+
+    if options.no_reset_stats:
+        runners.RESET_STATS_AFTER_HATCHING = False
+    if not runners.RESET_STATS_AFTER_HATCHING:
+        logger.info("NOT resetting stats after hatching")
+
     # if --master is set, make sure --no-web isn't set
     if options.master and options.no_web:
         logger.error("Locust can not run distributed with the web interface disabled (do not use --no-web and --master together)")
