@@ -269,6 +269,7 @@ class StatsEntry(object):
             "method": self.method,
             "last_request_timestamp": self.last_request_timestamp,
             "start_time": self.start_time,
+            "total_run_time": self.last_request_timestamp-self.start_time,
             "num_requests": self.num_requests,
             "num_failures": self.num_failures,
             "total_response_time": self.total_response_time,
@@ -285,6 +286,7 @@ class StatsEntry(object):
         for key in [
             "last_request_timestamp",
             "start_time",
+            "total_run_time",
             "num_requests",
             "num_failures",
             "total_response_time",
