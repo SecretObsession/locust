@@ -45,6 +45,7 @@ class LocustRunner(object):
             if RESET_STATS_AFTER_HATCHING:
                 logger.info("Resetting stats\n")
                 self.stats.reset_all()
+                self.stats.total_run_time()
         events.hatch_complete += on_hatch_complete
 
     @property

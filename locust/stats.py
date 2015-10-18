@@ -21,7 +21,8 @@ class RequestStats(object):
         self.max_requests = None
         self.last_request_timestamp = None
         self.start_time = None
-    
+        self.run_time = 0
+
     def get(self, name, method):
         """
         Retrieve a StatsEntry instance by name and method
@@ -63,7 +64,13 @@ class RequestStats(object):
         self.max_requests = None
         self.last_request_timestamp = None
         self.start_time = None
-        
+
+    def total_run_time(self):
+        try:
+            # return the time that the test has been running for.
+            self.run_time = int(time.time() - self.start_time)
+        except Exception as ex:
+            print(ex)
 
 class StatsEntry(object):
     """
@@ -84,7 +91,7 @@ class StatsEntry(object):
     
     total_response_time = None
     """ Total sum of the response times """
-    
+
     min_response_time = None
     """ Minimum response time """
     
@@ -269,7 +276,6 @@ class StatsEntry(object):
             "method": self.method,
             "last_request_timestamp": self.last_request_timestamp,
             "start_time": self.start_time,
-            "total_run_time": self.last_request_timestamp-self.start_time,
             "num_requests": self.num_requests,
             "num_failures": self.num_failures,
             "total_response_time": self.total_response_time,
@@ -286,7 +292,6 @@ class StatsEntry(object):
         for key in [
             "last_request_timestamp",
             "start_time",
-            "total_run_time",
             "num_requests",
             "num_failures",
             "total_response_time",

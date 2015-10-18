@@ -153,6 +153,10 @@ def request_stats():
     report = {"stats":stats, "errors":[e.to_dict() for e in runners.locust_runner.errors.itervalues()]}
     if stats:
         report["total_rps"] = stats[len(stats)-1]["current_rps"]
+        if runners.locust_runner.state != ("stopped" or "ready"):
+            # update run time
+            runners.locust_runner.stats.total_run_time()
+        report["total_run_time"] = runners.locust_runner.stats.run_time
         report["fail_ratio"] = runners.locust_runner.stats.aggregated_stats("Total").fail_ratio
         
         # since generating a total response times dict with all response times from all
