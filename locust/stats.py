@@ -21,6 +21,7 @@ class RequestStats(object):
         self.max_requests = None
         self.last_request_timestamp = None
         self.start_time = None
+        self.run_time = 0
     
     def get(self, name, method):
         """
@@ -63,7 +64,14 @@ class RequestStats(object):
         self.max_requests = None
         self.last_request_timestamp = None
         self.start_time = None
-        
+
+    def total_run_time(self):
+        # return the time that the test has been running for.
+        if self.start_time is None:
+            self.run_time = 0
+        else:
+            self.run_time = int(time.time() - self.start_time)
+
 
 class StatsEntry(object):
     """
