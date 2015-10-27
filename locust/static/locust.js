@@ -132,16 +132,16 @@ function updateStats() {
         $("#run_time").html(String(report.total_run_time).toHHMMSS());
 
         if (report.slave_count)
-            $("#slaveCount").html(report.slave_count)
+            $("#slaveCount").html(report.slave_count);
 
         $('#stats tbody').empty();
         $('#errors tbody').empty();
 
         alternate = false;
 
-        totalRow = report.stats.pop()
-        sortedStats = (report.stats).sort(sortBy(sortAttribute, desc))
-        sortedStats.push(totalRow)
+        totalRow = report.stats.pop();
+        sortedStats = (report.stats).sort(sortBy(sortAttribute, desc));
+        sortedStats.push(totalRow);
         $('#stats tbody').jqoteapp(stats_tpl, sortedStats);
         alternate = false;
         $('#errors tbody').jqoteapp(errors_tpl, (report.errors).sort(sortBy(sortAttribute, desc)));
