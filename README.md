@@ -54,6 +54,10 @@ More info and documentation can be found at: <a href="http://docs.locust.io/">ht
 - Joakim Hamrén (@<a href="http://twitter.com/Jahaaja">Jahaaja</a>)
 - Hugo Heyman (@<a href="http://twitter.com/hugoheyman">hugoheyman</a>)
 
+## Contributors
+
+- Mike Herold
+
 ## License
 
 Open source licensed under the MIT license (see _LICENSE_ file for details).
