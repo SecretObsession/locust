@@ -2,6 +2,11 @@
 Changelog
 ##########
 
+0.7.4
+=====
+ * Added stats reset after hatching.
+
+
 0.7.3
 =====
 
